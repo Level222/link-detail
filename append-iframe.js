@@ -115,7 +115,7 @@ class FadeAnimation {
         };
 
         this.#animationFrame = requestAnimationFrame(step);
-      }
+      };
 
       this.#animationFrame = requestAnimationFrame(step);
     });
@@ -135,6 +135,44 @@ class IconIframe {
   #iconArea = new IconArea();
   #exist = false;
   #fadeAnimation = new FadeAnimation(this.#iframe);
+  #animationSettings = {
+    fadeIn: {
+      delay: 300,
+      duration: 200
+    },
+    fadeOut: {
+      delay: 300,
+      duration: 200
+    }
+  };
+
+  constructor() {
+    this.#loadAnimationSettings();
+
+    chrome.storage.onChanged.addListener(() => {
+      this.#loadAnimationSettings();
+    });
+  }
+
+  #numInit(num, initialNum) {
+    if (typeof num === "number" && Number.isFinite(num)) {
+      return num;
+    }
+    return initialNum;
+  };
+
+  async #loadAnimationSettings() {
+    const animation = (await chrome.storage.sync.get("animation")).animation ?? {};
+    const { fadeIn, fadeOut } = this.#animationSettings;
+
+    const newFadeIn = animation.fadeIn ?? {};
+    fadeIn.delay = this.#numInit(newFadeIn.delay, fadeIn.delay);
+    fadeIn.duration = this.#numInit(newFadeIn.duration, fadeIn.duration);
+
+    const newFadeOut = animation.fadeOut ?? {};
+    fadeOut.delay = this.#numInit(newFadeOut.delay, fadeOut.delay);
+    fadeOut.duration = this.#numInit(newFadeOut.duration, fadeOut.duration);
+  }
 
   #clearAttributes() {
     for (const attr of this.#iframe.attributes) {
@@ -164,19 +202,23 @@ class IconIframe {
     }
 
     this.#exist = true;
-    this.#fadeAnimation.fadeIn(300, 200);
+    const { fadeIn: { duration, delay } } = this.#animationSettings;
+    this.#fadeAnimation.fadeIn(duration, delay);
   }
 
   remove() {
-    if (this.#exist) {
-      this.#exist = false;
-      this.#fadeAnimation.fadeOut(300, 200)
+    if (!this.#exist) {
+      return;
+    }
+
+    this.#exist = false;
+    const { fadeOut: { duration, delay } } = this.#animationSettings;
+    this.#fadeAnimation.fadeOut(duration, delay)
       .then((canceled) => {
         if (!canceled) {
-          this.#iframe.remove()
+          this.#iframe.remove();
         }
       });
-    }
   }
 }
 

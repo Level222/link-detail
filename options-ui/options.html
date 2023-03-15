@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Options - Link Target</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+
+  <form id="form">
+
+    <h2>Fade in</h2>
+    <dl>
+      <dt>Delay</dt>
+      <dd><input type="number" id="fade-in-delay" placeholder="default (300)" min="0"></dd>
+      <dt>Duration</dt>
+      <dd><input type="number" id="fade-in-duration" placeholder="default (200)" min="0"></dd>
+    </dl>
+
+    <h2>Fade out</h2>
+    <dl>
+      <dt>Delay</dt>
+      <dd><input type="number" id="fade-out-delay" placeholder="default (300)" min="0"></dd>
+      <dt>Duration</dt>
+      <dd><input type="number" id="fade-out-duration" placeholder="default (200)" min="0"></dd>
+    </dl>
+
+    <div>
+      <button id="update">Update Options</button>
+    </div>
+
+  </form>
+
+  <script src="options.js"></script>
+
+</body>
+</html>

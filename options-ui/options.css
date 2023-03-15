@@ -1,0 +1,31 @@
+body {
+  font: 16px sans-serif;
+  margin: 10px;
+}
+
+button {
+  font: inherit;
+  font-size: 14px;
+}
+
+@keyframes notice-fade-out {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  to {
+    transform: translateY(-0.5em);
+    opacity: 0;
+  }
+}
+
+.notice {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  background-color: #7898;
+  color: #fff;
+  padding: 0.5em;
+  animation: notice-fade-out 4s 2s;
+}
