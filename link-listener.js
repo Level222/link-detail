@@ -11,7 +11,7 @@ const getParentAnchor = (elem) => {
 const sendAnchorMsg = (targetLink) => {
   const msgData = {};
 
-  if (targetLink) {
+  if (targetLink && targetLink.href) {
     msgData.msg = "addIframe";
     msgData.linkTarget = targetLink.target;
   } else {

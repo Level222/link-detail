@@ -3,9 +3,22 @@ body {
   margin: 10px;
 }
 
+input,
 button {
   font: inherit;
   font-size: 14px;
+}
+
+input {
+  border: none;
+  border-radius: 0;
+  border-bottom: 1.5px solid #abc;
+  outline: none;
+  width: 150px;
+}
+
+input:focus {
+  border-bottom-color: #789;
 }
 
 @keyframes notice-fade-out {
