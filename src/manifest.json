@@ -17,7 +17,7 @@
         "<all_urls>"
       ],
       "js": [
-        "append-iframe.js"
+        "top-frame.bundle.js"
       ]
     },
     {
@@ -25,15 +25,15 @@
         "<all_urls>"
       ],
       "js": [
-        "link-listener.js"
+        "all-frames.bundle.js"
       ],
       "all_frames": true
     }
   ],
   "background": {
-    "service_worker": "background.js"
+    "service_worker": "background.bundle.js"
   },
   "options_ui": {
-    "page": "options-ui/options.html"
+    "page": "options-ui.html"
   }
 }

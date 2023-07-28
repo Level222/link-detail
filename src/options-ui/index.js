@@ -1,5 +1,10 @@
+// import React, { useState, useEffect } from "react";
+// import ReactDOM from "react";
+import "./style.css";
+
 (async () => {
   "use strict";
+
 
   const animation = (await chrome.storage.sync.get("animation")).animation ?? {};
   animation.fadeIn = animation.fadeIn ?? {};

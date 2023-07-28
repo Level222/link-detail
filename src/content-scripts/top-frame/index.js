@@ -202,7 +202,7 @@ class IconIframe {
     }
 
     this.#exist = true;
-    const { fadeIn: { duration, delay } } = this.#animationSettings;
+    const { duration, delay } = this.#animationSettings.fadeIn;
     this.#fadeAnimation.fadeIn(duration, delay);
   }
 
@@ -212,7 +212,7 @@ class IconIframe {
     }
 
     this.#exist = false;
-    const { fadeOut: { duration, delay } } = this.#animationSettings;
+    const { duration, delay } = this.#animationSettings.fadeOut;
     this.#fadeAnimation.fadeOut(duration, delay)
       .then((canceled) => {
         if (!canceled) {
